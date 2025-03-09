@@ -1,7 +1,7 @@
 import { RouteObject } from "react-router-dom";
 import Pages from "./pages-enum";
 import Layout from "../components/Layout/Layout";
-import { Home, Meal, Page404 } from "../pages";
+import { Busket, Home, Meal, Page404 } from "../pages";
 
 const routes: RouteObject[] = [
     {
@@ -15,6 +15,10 @@ const routes: RouteObject[] = [
             {
                 path: Pages.Meal,
                 element: <Meal />,
+            },
+            {
+                path: Pages.Busket,
+                element: <Busket />,
             },
             {
                 path: Pages.Undefined,

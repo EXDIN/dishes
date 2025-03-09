@@ -1,9 +1,10 @@
 import { useQueries, useQuery } from "@tanstack/react-query";
 import styles from "./Home.module.css";
 import { MealCard } from "../../components";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Pagination from "../../components/Pagination";
-import debounce from "lodash.debounce";
+import { ShoppingCart } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const fetchCategories = async () => {
     const res = await fetch(
@@ -45,7 +46,7 @@ export type MealType = {
 };
 
 export default function Home() {
-    const [selectedCategory, setSelectedCategory] = useState<string>("");
+    // const [selectedCategory, setSelectedCategory] = useState<string>("");
     const {
         data: categoryData,
         isLoading: isLoadingCategories,
@@ -69,7 +70,13 @@ export default function Home() {
 
     const itemsPerPage = 14;
     const [currentPage, setCurrentPage] = useState(1);
-    const totalPages = Math.ceil(allMeals.length / itemsPerPage);
+    const [totalPages, setTotalPages] = useState(1);
+
+    useEffect(() => {
+        if (allMeals) {
+            setTotalPages(Math.ceil(allMeals.length / itemsPerPage));
+        }
+    }, [allMeals]);
 
     const indexOfLastMeal = currentPage * itemsPerPage;
     const indexOfFirstMeal = indexOfLastMeal - itemsPerPage;
@@ -79,10 +86,12 @@ export default function Home() {
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFilter(event.target.value);
+        const newMeals = allMeals.map((el) => el.strMeal.includes(filter));
+        setTotalPages(Math.ceil(newMeals.length / itemsPerPage));
     };
 
     const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setSelectedCategory(e.target.value);
+        // setSelectedCategory(e.target.value);
         setCurrentPage(1);
     };
 
@@ -112,17 +121,15 @@ export default function Home() {
                       ))
                     : null}
             </select>
+            <Link to={"/busket"}>
+                {" "}
+                <ShoppingCart></ShoppingCart>
+            </Link>
             <h1>Страви</h1>
             <div className={styles.grid}>
-                {currentMeals.map((meal: MealType) =>
-                    filter && meal.strMeal.includes(filter) ? (
-                        <MealCard
-                            key={meal.idMeal}
-                            meal={meal}
-                            cat={selectedCategory}
-                        />
-                    ) : null
-                )}
+                {currentMeals.map((meal: MealType) => (
+                    <MealCard key={meal.idMeal} meal={meal} />
+                ))}
             </div>
             <Pagination
                 totalPages={totalPages}
