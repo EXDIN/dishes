@@ -44,7 +44,7 @@ export default function MealCard({ meal }: { meal: any }) {
 
     return (
         <div className={styles.card}>
-            <Link to={"/meal/" + meal.idMeal}>
+            <Link to={"/dishes/meal/" + meal.idMeal}>
                 <img
                     src={mealData?.strMealThumb}
                     alt={mealData?.strMeal}

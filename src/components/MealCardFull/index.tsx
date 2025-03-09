@@ -33,7 +33,7 @@ export default function MealCardFull({ meal }: { meal: string }) {
 
     return (
         <div className={styles.card}>
-            <Link to={"/meal/" + mealData.idMeal}>
+            <Link to={"/dishes/meal/" + mealData.idMeal}>
                 <img
                     src={mealData?.strMealThumb}
                     alt={mealData?.strMeal}

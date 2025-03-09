@@ -121,7 +121,7 @@ export default function Home() {
                       ))
                     : null}
             </select>
-            <Link to={"/busket"}>
+            <Link to={"/dishes/busket"}>
                 {" "}
                 <ShoppingCart></ShoppingCart>
             </Link>

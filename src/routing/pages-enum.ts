@@ -1,8 +1,8 @@
 enum Pages {
-    Home = "/",
-    Meal = "/meal/:id",
-    Busket = "/busket",
-    Undefined = "*",
+    Home = "/dishes/",
+    Meal = "/dishes/meal/:id",
+    Busket = "/dishes/busket",
+    Undefined = "/dishes/*",
 }
 
 export default Pages;
