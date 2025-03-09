@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { FullMealType } from "../../constants";
 import styles from "./meal-card.module.css";
 import { Link } from "react-router-dom";
 

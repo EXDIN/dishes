@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { FullMealType } from "../../constants";
+
 import styles from "./meal-card.module.css";
 import { Link } from "react-router-dom";
 import { BadgeX, CirclePlus } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { addMeal, delMeal } from "../../store/mealSlice";
 import { RootState } from "../../store/store";
+import { FullMealType } from "../../constants";
 
 const fetchMeal = async (id: string) => {
     const res = await fetch(
@@ -18,7 +19,7 @@ const fetchMeal = async (id: string) => {
     return data.meals ? data.meals[0] : null;
 };
 
-export default function MealCard({ meal }) {
+export default function MealCard({ meal }: { meal: any }) {
     const dispatch = useDispatch();
     const selectedMeals = useSelector((store: RootState) => store.meals.meals);
     const isInBucket = selectedMeals.includes(meal.idMeal);

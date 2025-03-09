@@ -9,7 +9,7 @@ import { Provider } from "react-redux";
 const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
-            refetchOnWindowFocus: false, // Вимкнути перезапит для всіх запитів
+            refetchOnWindowFocus: false,
         },
     },
 });

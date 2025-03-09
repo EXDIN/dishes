@@ -90,7 +90,7 @@ export default function Home() {
         setTotalPages(Math.ceil(newMeals.length / itemsPerPage));
     };
 
-    const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleCategoryChange = () => {
         // setSelectedCategory(e.target.value);
         setCurrentPage(1);
     };
